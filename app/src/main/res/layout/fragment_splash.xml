@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorPrimary">
+
+    <FrameLayout
+        android:id="@+id/splash_circle"
+        android:layout_gravity="center"
+        android:layout_marginBottom="56dp"
+        android:background="@drawable/top_icon_background"
+        android:elevation="8dp"
+        android:padding="32dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp">
+        <ImageView
+            android:layout_gravity="center"
+            android:tint="?attr/colorPrimary"
+            android:src="@android:drawable/sym_def_app_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <TextView
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="56dp"
+        android:textSize="26sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:text="Design Guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</FrameLayout>

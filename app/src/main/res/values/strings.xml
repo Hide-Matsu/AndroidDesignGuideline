@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">AndroidDesignGuideline</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Top -->
+    <string name="top_msg">Please select a navigation.</string>
+    <string name="top_contents_drawer">Navigation Drawer</string>
+    <string name="top_contents_bottom">Bottom Navigation</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>
