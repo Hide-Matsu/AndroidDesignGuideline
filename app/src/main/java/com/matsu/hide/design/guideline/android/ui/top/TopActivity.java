@@ -62,7 +62,7 @@ public class TopActivity extends AppCompatActivity implements BaseFragment.Fragm
                 .beginTransaction()
                 .replace(R.id.container, fragment, tag)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .commit();
+                .commitAllowingStateLoss();
     }
 
     //endregion
