@@ -1,5 +1,9 @@
 package com.matsu.hide.design.guideline.android.common.model.splash;
 
+import android.content.Context;
+import android.os.Handler;
+import android.view.ContextMenu;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -25,14 +29,9 @@ public class Splash {
     private SplashCallback callback = null;
 
     /**
-     * タイマー
+     * ハンドラ
      */
-    private Timer timer = null;
-
-    /**
-     * タイマータスク
-     */
-    private TimerTask timerTask = null;
+    private Handler handler = null;
 
     //endregion
 
@@ -52,25 +51,9 @@ public class Splash {
     /**
      * コンストラクタ
      */
-    public Splash(SplashCallback callback) {
+    public Splash(SplashCallback callback, Handler handler) {
         this.callback = callback;
-        this.init();
-    }
-
-    /**
-     * 初期化処理
-     */
-    private void init() {
-        this.timer = new Timer();
-        this.timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                // 通知
-                if (callback != null) {
-                    callback.onSplashFinished();
-                }
-            }
-        };
+        this.handler = handler;
     }
 
     /**
@@ -78,7 +61,15 @@ public class Splash {
      */
     public void start() {
         // 規定時間後に通知
-        timer.schedule(timerTask, SPLASH_TIME);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // 通知
+                if (callback != null) {
+                    callback.onSplashFinished();
+                }
+            }
+        }, SPLASH_TIME);
     }
 
     //endregion

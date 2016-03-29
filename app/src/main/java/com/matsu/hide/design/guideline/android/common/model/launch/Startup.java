@@ -1,5 +1,7 @@
 package com.matsu.hide.design.guideline.android.common.model.launch;
 
+import android.os.Handler;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -25,19 +27,9 @@ public class Startup {
     //region field
 
     /**
-     * タイマー
+     * ハンドラ
      */
-    private Timer timer = null;
-
-    /**
-     * ファイル展開処理タイマータスク
-     */
-    private TimerTask fileDeployTimerTask = null;
-
-    /**
-     * ログイン処理タイマータスク
-     */
-    private TimerTask loginTimerTask = null;
+    private Handler handler = null;
 
     /**
      * 受け取ったコールバック
@@ -65,38 +57,9 @@ public class Startup {
     /**
      * コンストラクタ
      */
-    public Startup(StartupCallback callback) {
+    public Startup(StartupCallback callback, Handler handler) {
         this.callback = callback;
-        this.init();
-    }
-
-    /**
-     * 初期化処理
-     */
-    private void init() {
-        this.timer = new Timer();
-
-        // ファイル展開処理
-        this.fileDeployTimerTask = new TimerTask() {
-            @Override
-            public void run() {
-                // 通知
-                if (callback != null) {
-                    callback.onFileDeployFinished();
-                }
-            }
-        };
-
-        // ログイン処理
-        this.loginTimerTask = new TimerTask() {
-            @Override
-            public void run() {
-                // 通知
-                if (callback != null) {
-                    callback.onLoginFinished();
-                }
-            }
-        };
+        this.handler = handler;
     }
 
     /**
@@ -104,12 +67,28 @@ public class Startup {
      */
     public void startFileDeployment() {
         // 規定時間後に通知
-        timer.schedule(fileDeployTimerTask, FILE_DEPLOY_TIME);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // 通知
+                if (callback != null) {
+                    callback.onFileDeployFinished();
+                }
+            }
+        }, FILE_DEPLOY_TIME);
     }
 
     public void startLoginCheck() {
         // 規定時間後に通知
-        timer.schedule(loginTimerTask, LOGIN_CHECK_TIME);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // 通知
+                if (callback != null) {
+                    callback.onLoginFinished();
+                }
+            }
+        }, LOGIN_CHECK_TIME);
     }
 
     //endregion

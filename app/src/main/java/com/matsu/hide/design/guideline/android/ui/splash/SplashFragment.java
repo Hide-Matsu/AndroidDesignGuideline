@@ -3,15 +3,20 @@ package com.matsu.hide.design.guideline.android.ui.splash;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.matsu.hide.design.guideline.android.R;
 import com.matsu.hide.design.guideline.android.common.model.launch.Startup;
 import com.matsu.hide.design.guideline.android.common.model.splash.Splash;
-import com.matsu.hide.design.guideline.android.ui.common.BaseFragment;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 /**
  * Splash画面
@@ -45,6 +50,22 @@ public class SplashFragment extends Fragment implements Splash.SplashCallback, S
      */
     private Startup startup = null;
 
+    //region views
+
+    /**
+     * プログレスバー
+     */
+    @InjectView(R.id.splash_progress)
+    ProgressBar progressBar;
+
+    /**
+     * タイトルのテキストビュー
+     */
+    @InjectView(R.id.splash_title)
+    TextView titleTextView;
+
+    //endregion
+
     //endregion
 
     //region interface
@@ -71,8 +92,8 @@ public class SplashFragment extends Fragment implements Splash.SplashCallback, S
      * コンストラクタ
      */
     public SplashFragment() {
-        this.splash = new Splash(this);
-        this.startup = new Startup(this);
+        this.splash = new Splash(this, new Handler());
+        this.startup = new Startup(this, new Handler());
     }
 
     /**
@@ -99,7 +120,9 @@ public class SplashFragment extends Fragment implements Splash.SplashCallback, S
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
-        return inflater.inflate(R.layout.fragment_splash, container, false);
+        View view = inflater.inflate(R.layout.fragment_splash, container, false);
+        ButterKnife.inject(this, view);
+        return view;
     }
 
     /**
@@ -117,6 +140,7 @@ public class SplashFragment extends Fragment implements Splash.SplashCallback, S
      */
     @Override
     public void onSplashFinished() {
+        progressBar.setVisibility(View.VISIBLE);
         startup.startFileDeployment();
     }
 

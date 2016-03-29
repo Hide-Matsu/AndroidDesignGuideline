@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary">
 
     <FrameLayout
         android:id="@+id/splash_circle"
-        android:layout_gravity="center"
-        android:layout_marginBottom="56dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="112dp"
         android:background="@drawable/top_icon_background"
         android:elevation="8dp"
         android:padding="32dp"
@@ -21,8 +22,19 @@
             android:layout_height="match_parent" />
     </FrameLayout>
 
+    <ProgressBar
+        android:id="@+id/splash_progress"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="160dp"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <TextView
-        android:layout_gravity="center_horizontal|bottom"
+        android:id="@+id/splash_title"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="56dp"
         android:textSize="26sp"
         android:textColor="@color/white"
@@ -30,4 +42,4 @@
         android:text="Design Guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-</FrameLayout>
+</RelativeLayout>

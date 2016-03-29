@@ -7,13 +7,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.matsu.hide.design.guideline.android.R;
-import com.matsu.hide.design.guideline.android.ui.common.BaseFragment;
 import com.matsu.hide.design.guideline.android.ui.splash.SplashFragment;
 
 /**
  * 起動時の画面
  */
-public class TopActivity extends AppCompatActivity implements SplashFragment.SplashFragmentListener {
+public class TopActivity extends AppCompatActivity implements SplashFragment.SplashFragmentListener, RecyclerFragment.RecyclerFragmentListener {
 
     //region field
 

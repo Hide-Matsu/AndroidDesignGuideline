@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.matsu.hide.design.guideline.android.R;
-import com.matsu.hide.design.guideline.android.ui.common.BaseFragment;
 
 import java.util.ArrayList;
 
