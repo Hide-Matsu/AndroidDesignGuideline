@@ -1,5 +1,7 @@
 package com.matsu.hide.design.guideline.android.ui.splash;
 
+import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,7 +16,7 @@ import com.matsu.hide.design.guideline.android.ui.common.BaseFragment;
 /**
  * Splash画面
  */
-public class SplashFragment extends BaseFragment implements Splash.SplashCallback, Startup.StartupCallback {
+public class SplashFragment extends Fragment implements Splash.SplashCallback, Startup.StartupCallback {
 
     //region field
 
@@ -22,6 +24,16 @@ public class SplashFragment extends BaseFragment implements Splash.SplashCallbac
      * TAG
      */
     public static final String TAG = SplashFragment.class.getSimpleName();
+
+    /**
+     * Context
+     */
+    protected Context context = null;
+
+    /**
+     * FragmentListener
+     */
+    protected SplashFragmentListener listener = null;
 
     /**
      * スプラッシュ処理クラス
@@ -32,6 +44,17 @@ public class SplashFragment extends BaseFragment implements Splash.SplashCallbac
      * 初期化処理クラス
      */
     private Startup startup = null;
+
+    //endregion
+
+    //region interface
+
+    /**
+     * FragmentListener
+     */
+    public interface SplashFragmentListener {
+        void onStartupFinished();
+    }
 
     //endregion
 
@@ -50,6 +73,24 @@ public class SplashFragment extends BaseFragment implements Splash.SplashCallbac
     public SplashFragment() {
         this.splash = new Splash(this);
         this.startup = new Startup(this);
+    }
+
+    /**
+     * FragmentがFragmentManagerに追加された
+     */
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        // FragmentListenerの受取
+        if (!(context instanceof SplashFragmentListener)) {
+            throw new UnsupportedOperationException(
+                    "FragmentListener is not Implementation.");
+        } else {
+            listener = (SplashFragmentListener) context;
+        }
+        // Contextの保持
+        this.context = context;
     }
 
     /**
@@ -109,7 +150,7 @@ public class SplashFragment extends BaseFragment implements Splash.SplashCallbac
     @Override
     public void onLoginFinished() {
         if (listener != null) {
-            listener.onFragmentInteraction(FragmentEvent.StartupFinished);
+            listener.onStartupFinished();
         }
     }
 

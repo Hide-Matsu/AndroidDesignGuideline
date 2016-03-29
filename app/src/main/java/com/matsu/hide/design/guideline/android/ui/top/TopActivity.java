@@ -1,5 +1,6 @@
 package com.matsu.hide.design.guideline.android.ui.top;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -12,7 +13,7 @@ import com.matsu.hide.design.guideline.android.ui.splash.SplashFragment;
 /**
  * 起動時の画面
  */
-public class TopActivity extends AppCompatActivity implements BaseFragment.FragmentListener {
+public class TopActivity extends AppCompatActivity implements SplashFragment.SplashFragmentListener {
 
     //region field
 
@@ -41,29 +42,24 @@ public class TopActivity extends AppCompatActivity implements BaseFragment.Fragm
     }
 
     /**
-     * Fragmentから通知されたイベント
-     */
-    @Override
-    public void onFragmentInteraction(BaseFragment.FragmentEvent event) {
-        switch (event) {
-
-            // スプラッシュ終了イベント
-            case StartupFinished:
-                this.changeContent(RecyclerFragment.newInstance(), RecyclerFragment.TAG);
-                break;
-        }
-    }
-
-    /**
      * 画面切り替え
      */
-    private void changeContent(BaseFragment fragment, String tag) {
+    private void changeContent(Fragment fragment, String tag) {
         this.fragmentManager
                 .beginTransaction()
                 .replace(R.id.container, fragment, tag)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commitAllowingStateLoss();
     }
+
+    //region FragmentListener
+
+    @Override
+    public void onStartupFinished() {
+        this.changeContent(RecyclerFragment.newInstance(), RecyclerFragment.TAG);
+    }
+
+    //endregion
 
     //endregion
 }
