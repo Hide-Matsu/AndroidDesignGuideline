@@ -1,26 +1,17 @@
-package com.matsu.hide.design.guideline.android.ui.top;
+package com.matsu.hide.design.guideline.android.ui.recycler;
 
 import android.content.Context;
-import android.support.v4.widget.PopupWindowCompat;
-import android.support.v7.view.menu.MenuPopupHelper;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 
-import com.matsu.hide.design.guideline.android.BuildConfig;
 import com.matsu.hide.design.guideline.android.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -97,7 +88,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             popupWindow.setBackgroundDrawable(context.getDrawable(R.drawable.menu_background));
             popupWindow.setElevation(8.0f);
 
-            button = (ImageButton) itemView.findViewById(R.id.menu_btn);
+            button = (ImageButton) itemView.findViewById(R.id.item_menu_btn);
             button.setOnClickListener(this);
         }
 

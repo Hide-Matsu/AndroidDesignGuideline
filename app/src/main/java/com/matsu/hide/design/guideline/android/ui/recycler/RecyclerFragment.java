@@ -1,17 +1,16 @@
-package com.matsu.hide.design.guideline.android.ui.top;
+package com.matsu.hide.design.guideline.android.ui.recycler;
 
 import android.app.Fragment;
 import android.content.Context;
-import android.graphics.drawable.GradientDrawable;
-import android.net.Uri;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.matsu.hide.design.guideline.android.R;
+import com.matsu.hide.design.guideline.android.databinding.FragmentRecyclerBinding;
 
 import java.util.ArrayList;
 
@@ -30,14 +29,17 @@ public class RecyclerFragment extends Fragment {
     /**
      * Context
      */
-    protected Context context = null;
+    private Context context = null;
 
     /**
      * FragmentListener
      */
-    protected RecyclerFragmentListener listener = null;
+    private RecyclerFragmentListener listener = null;
 
-    private RecyclerView recycler = null;
+    /**
+     * データバインドクラス
+     */
+    private FragmentRecyclerBinding binding = null;
 
     //endregion
 
@@ -81,12 +83,13 @@ public class RecyclerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_recycler, container, false);
-        recycler = (RecyclerView)view.findViewById(R.id.list_view);
+        binding = DataBindingUtil.bind(view);
+
+        // レイアウトマネージャを設定
         LinearLayoutManager manager = new LinearLayoutManager(view.getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
-        recycler.setLayoutManager(manager);
+        binding.recyclerList.setLayoutManager(manager);
         return view;
     }
 
@@ -103,7 +106,7 @@ public class RecyclerFragment extends Fragment {
         }
 
         CustomAdapter adapter = new CustomAdapter(context, items);
-        recycler.setAdapter(adapter);
+        binding.recyclerList.setAdapter(adapter);
     }
 
     //endregion

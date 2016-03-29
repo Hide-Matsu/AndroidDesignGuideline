@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.matsu.hide.design.guideline.android.R;
+import com.matsu.hide.design.guideline.android.ui.recycler.RecyclerFragment;
 import com.matsu.hide.design.guideline.android.ui.splash.SplashFragment;
 
 /**
