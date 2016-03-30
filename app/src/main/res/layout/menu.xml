@@ -1,36 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="120dp"
-    android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp">
+<layout>
+    <data>
+        <variable
+            name="onMenuItemClickListener"
+            type="com.matsu.hide.design.guideline.android.common.callback.RecyclerMenuItemClickListener"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:orientation="vertical" android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:background="@android:color/transparent">
+        <LinearLayout
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/menu_background"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:elevation="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
 
-    <Button
-        android:id="@+id/menu1"
-        android:text="Item1"
-        android:background="@drawable/menu_button_background"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="56dp" />
+            <Button
+                android:id="@+id/menu1"
+                android:onClick="@{onMenuItemClickListener.onMenuItemClick}"
+                android:text="@string/menu_item_1"
+                android:textColor="@android:color/primary_text_light"
+                android:background="@drawable/menu_button_background"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="56dp" />
 
-    <Button
-        android:id="@+id/menu2"
-        android:text="Item2"
-        android:background="@drawable/menu_button_background"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="56dp" />
+            <Button
+                android:id="@+id/menu2"
+                android:onClick="@{onMenuItemClickListener.onMenuItemClick}"
+                android:text="@string/menu_item_2"
+                android:textColor="@android:color/primary_text_light"
+                android:background="@drawable/menu_button_background"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="56dp" />
 
-    <Button
-        android:id="@+id/menu3"
-        android:text="Item3"
-        android:background="@drawable/menu_button_background"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="56dp" />
-
-</LinearLayout>
+            <Button
+                android:id="@+id/menu3"
+                android:onClick="@{onMenuItemClickListener.onMenuItemClick}"
+                android:text="@string/menu_item_3"
+                android:textColor="@android:color/primary_text_light"
+                android:background="@drawable/menu_button_background"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="56dp" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

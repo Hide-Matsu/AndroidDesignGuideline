@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+    <data>
+        <variable
+            name="user"
+            type="com.matsu.hide.design.guideline.android.common.user.User" />
+        <variable
+            name="onClickListener"
+            type="android.view.View.OnClickListener"/>
+    </data>
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="160dp">
 
         <ImageView
             android:background="?attr/colorPrimary"
+            android:tint="@color/deep_orange_accent_color"
             android:src="@android:drawable/sym_def_app_icon"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <ImageButton
+            android:onClick="@{onClickListener.onClick}"
             android:id="@+id/item_menu_btn"
             android:src="@drawable/ic_more_vert_white_24dp"
             android:background="@drawable/menu_button_background"
@@ -20,14 +30,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/item_title"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_gravity="top|left"
             android:layout_margin="16dp"
-            android:text="XXX"
-            android:textSize="21sp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/item_user_no"
+                android:text="@{user.no}"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/item_name"
+                android:text="@{user.name}"
+                android:textStyle="bold"
+                android:textSize="21sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/item_old"
+                android:text="@{user.old}"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
 
         <View
             android:layout_gravity="bottom"

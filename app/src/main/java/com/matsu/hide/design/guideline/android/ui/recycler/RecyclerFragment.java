@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.matsu.hide.design.guideline.android.R;
+import com.matsu.hide.design.guideline.android.common.user.User;
 import com.matsu.hide.design.guideline.android.databinding.FragmentRecyclerBinding;
 
 import java.util.ArrayList;
@@ -83,10 +84,11 @@ public class RecyclerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // View生成
         View view = inflater.inflate(R.layout.fragment_recycler, container, false);
         binding = DataBindingUtil.bind(view);
 
-        // レイアウトマネージャを設定
+        // RecyclerViewにレイアウトマネージャを設定
         LinearLayoutManager manager = new LinearLayoutManager(view.getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         binding.recyclerList.setLayoutManager(manager);
@@ -100,11 +102,18 @@ public class RecyclerFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        ArrayList<String> items = new ArrayList<>();
+        // 仮データ作成
+        ArrayList<User> items = new ArrayList<>();
+        User user;
         for (int i = 0; i < 10; i++) {
-            items.add("");
+            user = new User();
+            user.setName(String.format("Sample Name %d", i));
+            user.setNo(String.format("%d", 10000 + i));
+            user.setOld(String.format("%d", 20 + i));
+            items.add(user);
         }
 
+        // 仮データセット
         CustomAdapter adapter = new CustomAdapter(context, items);
         binding.recyclerList.setAdapter(adapter);
     }

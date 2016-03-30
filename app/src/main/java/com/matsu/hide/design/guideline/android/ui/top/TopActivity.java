@@ -49,7 +49,7 @@ public class TopActivity extends AppCompatActivity implements SplashFragment.Spl
                 .beginTransaction()
                 .replace(R.id.container, fragment, tag)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .commitAllowingStateLoss();
+                .commit();
     }
 
     //region FragmentListener
