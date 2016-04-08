@@ -1,6 +1,6 @@
 package com.matsu.hide.design.guideline.android.ui.recycler;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;

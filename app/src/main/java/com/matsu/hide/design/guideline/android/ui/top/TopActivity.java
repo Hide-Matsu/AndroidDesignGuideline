@@ -1,9 +1,9 @@
 package com.matsu.hide.design.guideline.android.ui.top;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.matsu.hide.design.guideline.android.R;
@@ -35,7 +35,7 @@ public class TopActivity extends AppCompatActivity implements SplashFragment.Spl
         setContentView(R.layout.activity_top);
 
         // FragmentManagerを保持
-        this.fragmentManager = getFragmentManager();
+        this.fragmentManager = getSupportFragmentManager();
 
         // 初期表示Fragmentをセット
         this.changeContent(SplashFragment.newInstance(), SplashFragment.TAG);
